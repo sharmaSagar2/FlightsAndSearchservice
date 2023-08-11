@@ -116,8 +116,9 @@
 
 
 ##my notes
-interaction with models can be done by repository layer
-service layer->bussiness logic,connecting with repository layer
-controllers->hitting api
+.interaction with models can be done by repository layer
+.service layer->bussiness logic,using  repository layer in service layer
+.service directly communicating with repositoy
+.controllers->hitting api
 
 

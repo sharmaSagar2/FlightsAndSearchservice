@@ -8,6 +8,7 @@ class CityRepository {
             const city = await City.create({ name });
             return city;    
         } catch (error) {
+            console.log("error on repository layer");
             throw {error};    
         }
     }
@@ -19,12 +20,42 @@ class CityRepository {
                     id : cityId
                 }
             });
+            return true;
         } catch (error) {
+            console.log("error on repository layer");
             throw {error};
         }
+    }
+
+    async updateCity(cityId,data) {
+        try {
+            const city = await City.update(data, {
+                where: {
+                    id : cityId
+                }
+            });
+            return city;
+        } catch (error) {
+            console.log("error on repository layer");
+        }
+
+    }
+
+    async getCity(cityId) {
+        try {
+             const city = await City.findByPK(cityId);
+             return city;    
+        } catch (error) {
+            console.log("error on repository layer");
+            throw{error};
+            
+        }
+
     }
 
 
 }
 
 module.exports = CityRepository;
+
+//we will using this city repository to implement an api using which we will able create cities in our database
