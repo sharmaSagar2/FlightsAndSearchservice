@@ -29,11 +29,16 @@ class CityRepository {
 
     async updateCity(cityId,data) {
         try {
-            const city = await City.update(data, {
-                where: {
-                    id : cityId
-                }
-            });
+            //m1
+            // const city = await City.update(data, {
+            //     where: {
+            //         id : cityId
+            //     }
+            // });
+            // m2->it also work but will not return updated object
+            const city = await City.findByPk(cityId);
+            city.name = data.name;
+            await city.save();
             return city;
         } catch (error) {
             console.log("error on repository layer");
@@ -43,7 +48,7 @@ class CityRepository {
 
     async getCity(cityId) {
         try {
-             const city = await City.findByPK(cityId);
+             const city = await City.findByPk(cityId);
              return city;    
         } catch (error) {
             console.log("error on repository layer");
@@ -51,6 +56,17 @@ class CityRepository {
             
         }
 
+    }
+
+    async getAllCities(){
+        try {
+            const cities = await City.findAll();
+            return cities
+            
+        } catch (error) {
+            console.log("error on repository layer");
+            throw{error};    
+        }
     }
 
 
