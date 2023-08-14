@@ -8,6 +8,13 @@ const {CityService} = require('../services/index');
 const cityService = new CityService();
 const create = async (req,res) => {
     try {
+        var myObject=req.body
+        const valuesArray = [];
+        for (const key in myObject) {
+        if (myObject.hasOwnProperty(key)) {
+        valuesArray.push(myObject[key]);
+  }
+}
         const city = await cityService.createCity(req.body);
         return res.status(201).json({
             data:city,
@@ -26,7 +33,27 @@ const create = async (req,res) => {
         })
     }
 }
- 
+const createbulk = async (req,res) => {
+    try {
+        const city = await cityService.createCitybulk(req.body);
+        return res.status(201).json({
+            data:city,
+            success:true,
+            message:"successfully created a city in bulk",
+            err:{}
+        })
+    } catch (error) {
+        console.log("error at controller layer");
+        console.log(error);
+        return res.status(500).json({
+            data:{},
+            success:false,
+            message:"not able to create a city in bulk",
+            err:error
+        })
+    }
+}
+
 const destroy = async (req,res) => {
     try {
         const city = await cityService.deleteCity(req.params.id);
@@ -118,7 +145,7 @@ const getAll = async (req,res) => {
     }
 }
 module.exports = {
-    create,destroy,get,update,getAll
+    create,destroy,get,update,getAll,createbulk
 }
 
 

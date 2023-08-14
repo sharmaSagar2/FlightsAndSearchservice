@@ -14,6 +14,21 @@ class CityService {
         }
     }
 
+
+    async createCitybulk(data) {
+        try {
+            const citiesString = data
+            const cityNames = citiesString.split(',');
+            const arrayOfObjects = cityNames.map(cityName => ({ name: cityName }));
+            console.log(arrayOfObjects);
+           const city = await this.CityRepository.createCitybulk(arrayOfObjects); 
+           return city;
+        } catch (error) {
+            console.log("error in service layer");
+            throw{error};
+        }
+    }
+
     async deleteCity(cityId) {
         try {
             const city = await this.CityRepository.deleteCity(cityId);

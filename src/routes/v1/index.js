@@ -6,4 +6,5 @@ router.delete('/city/:id',CityController.destroy);
 router.get('/city/:id',CityController.get);
 router.patch('/city/:id',CityController.update);
 router.get('/city',CityController.getAll);
+router.post('/citybulk',CityController.createbulk);
 module.exports = router;
