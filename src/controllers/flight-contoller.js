@@ -1,4 +1,4 @@
-const {FlightService} = require('../services/index');
+const { FlightService } = require('../services/index');
 const flightService =  new FlightService();
 
 const create = async (req,res) => {
@@ -24,6 +24,6 @@ const create = async (req,res) => {
         })
     }
 }
-module.exports ={
+module.exports={
     create
 }

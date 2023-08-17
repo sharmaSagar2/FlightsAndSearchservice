@@ -18,25 +18,25 @@ module.exports = {
        modeNumber: 'Airbus A320',
        capacity: 300,
        createdAt :new Date(),
-        updatedAt:new Date()
+       updatedAt:new Date()
      },
      {
       modeNumber: 'Boeing 777',
       capacity: 350,
       createdAt :new Date(),
-        updatedAt:new Date()
+      updatedAt:new Date()
     },
     {
       modeNumber: 'Boeing 747',
       capacity: 300,
       createdAt :new Date(),
-        updatedAt:new Date()
+      updatedAt:new Date()
     },
     {
       modeNumber: 'Airbus A330',
       capacity: 300,
       createdAt :new Date(),
-        updatedAt:new Date()
+      updatedAt:new Date()
 
     },
     ], {});
