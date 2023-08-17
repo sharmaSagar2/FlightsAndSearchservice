@@ -9,26 +9,19 @@ class FlightService {
         this.airplaneRepository = new AirplaneRepository();
         this.flightrespository = new FlightRespository();//AirplaneRepository
     }
-
+ 
     async createFlight(data) {
         try {
             if(!compareTime(data.arrivalTime,data.departureTime)){
                 throw{error:'arrival time cannot be less than departuretime'}
             }
-            const airplane = await  this.airplaneRepository.getAirplane(data.airplaneId);  
-            // const flight = await this.flightrespository.createFlightt({
-            //     ...data,totalSeats: data.airplaneId === null ? null : airplane.capacity
-            // });
-            const flight = await this.flightRepository.createFlight({
-                flightNumber: data.flightNumber,
-                airplaneId: data.airplaneId,
-                departureId: data.departureId,
-                arrivalId: data.arrivalId,
-                arrivalTime: data.arrivalTime,
-                departureTime: data.departureTime,
-                price: data.price,
-                totalSeats: data.airplaneId === null ? null : airplane.capacity,
-              });
+            const airplane = await  this.airplaneRepository.getAirplane(data.airplaneId);
+            if (!airplane) {
+                throw new Error(`Airplane with ID ${data.airplaneId} not found.`);
+            }
+            data.totalSeats=airplane.capacity;
+            const flight = await this.flightRepository.createFlight(data)
+           
             
             return flight;
             
